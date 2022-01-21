@@ -1,0 +1,100 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <style>
+        h1.intro {
+            color: blue;
+        }
+
+        p.important {
+            color: green;
+        }
+    </style>
+</head>
+
+<body>
+
+    <a href="https://www.w3schools.com/html/" accesskey="h">HTML tutorial</a><br>
+    <a href="https://www.w3schools.com/css/" accesskey="c">CSS tutorial</a>
+
+    <p>The accesskey attribute specifies a shortcut key to activate/focus an element.</p>
+    <p><strong>Note:</strong> The shortcut is varying in different browsers:</p>
+    <ul>
+        <li>Edge, IE, Chrome, Safari, Opera 15+: [ALT] + <em>accesskey</em></li>
+        <li>Opera prior version 15: [SHIFT] [ESC] + <em>accesskey</em></li>
+        <li>Firefox: [ALT] [SHIFT] + <em>accesskey</em></li>
+    </ul>
+
+    <h1 class="intro">Header 1</h1>
+    <p>A paragraph.</p>
+    <p class="important">Note that this is an important paragraph. :)</p>
+    <p contenteditable="true">This is an editable paragraph.</p>
+    <ul>
+        <li onclick="showDetails(this)" id="owl" data-animal-type="bird">Owl</li>
+        <li onclick="showDetails(this)" id="salmon" data-animal-type="fish">Salmon</li>
+        <li onclick="showDetails(this)" id="tarantula" data-animal-type="spider">Tarantula</li>
+    </ul>
+    <p dir="rtl">Write this text right-to-left!</p>
+    <p dir="ltl">Write this text right-to-left!</p>
+    <p draggable="true">This is a draggable paragraph.</p>
+    <p draggable="false">This is a draggable paragraph.</p>
+    <p draggable="auto">This is a draggable paragraph.</p>
+    <p hidden>This paragraph should be hidden.</p>
+    <h1 id="myHeader">Hello World!</h1>
+<button userInput="" onclick="displayResult()">Change text</button>
+<p>This is a paragraph.</p>
+<p lang="fr">Ceci est un paragraphe.</p>
+<p lang="es">Ceci est un paragraphe.</p>
+<p contenteditable="true" spellcheck="true">This is a praggagraph. It is editable. Try to change the text.</p>
+First name: <input type="text" name="fname" spellcheck="true">
+
+<div id ="ElemenContainer"></div>
+<h1 style="color:blue;text-align:center;">This is a header</h1>
+<p style="color:green;">This is a paragraph.</p>
+<div tabindex="1">W3Schools</div><br>
+<div tabindex="3">Google</div><br>
+<div tabindex="2">Microsoft</div>
+<p tabindex="4"><b>Note:</b> Try navigating the elements by using the "Tab" button on your keyboard.</p>
+<p translate="no">Don't translate this!</p>
+<p>This can be translated to any language.</p>
+<p translate="yes">Don't translate this!</p>
+<p>This can be translated to any language.</p>
+<!--End Attribute-->
+
+<!--Started DOM-->
+
+    <script>
+        function showDetails(animal) {
+            var animalType = animal.getAttribute("data-animal-type");
+            alert("The " + animal.innerHTML + " is a " + animalType + ".");
+        }   
+
+        function displayResult() {
+  document.getElementById("myHeader").innerHTML = "Have a nice day!";
+}
+
+document.getElementsByTagName('div')[0].focus();
+
+let userInput = "Element Text";
+const newElement = document.createElement("div");
+newElement.innerText = userInput;
+newElement.setAttribute("class","Elem");
+newElement.setAttribute("accesskey","key");
+newElement.setAttribute("contenteditable","edit");
+newElement.setAttribute("spellcheck","spell");
+newElement.style.backgroundColor = "lightblue"
+newElement.style.color = "darkblue"
+newElement.style.border = "1px solid silver"
+newElement.style.margin = "3px"
+newElement.style.padding = "3px"
+newElement.style.textAlign = "center"
+
+const container = document.getElementById("ElemenContainer");
+container.append(newElement);
+
+
+    </script>
+
+</body>
+</html>
