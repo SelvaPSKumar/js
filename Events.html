@@ -1,0 +1,142 @@
+<!DOCTYPE html>
+<html>
+<!--<body onafterprint="myFunction()">
+
+<h1>Try to print this document</h1>
+<p><b>Tip:</b> Keyboard shortcuts, such as Ctrl+P sets the page to print.</p>
+<p><b>Note:</b> The onafterprint event is not supported in Safari and Opera.</p>
+<p><b>Note:</b> In IE, the onafterprint event occurs before the print dialogue box, instead of after.</p>
+    </body>-->
+
+<!--<body onbeforeprint="myFunction()">
+
+    <h1>Try to print this document</h1>
+    <p><b>Tip:</b> Keyboard shortcuts, such as Ctrl+P sets the page to print.</p>
+    <p><b>Note:</b> The onbeforeprint event is not supported in Safari and Opera.</p>
+</body>-->    
+
+<!--<body onbeforeunload="return myFunction()">
+
+    <p>Close this window, press F5 or click on the link below to invoke the onbeforeunload event.</p>
+    
+    <a href="https://www.w3schools.com">Click here to go to w3schools.com</a>
+    <img src="image.gif" onerror="myFunction()">
+
+    <p>A function is triggered if an error occurs when loading the image. The function shows an alert box with a text. In this example we refer to an image that does not exist, therefore the onerror event occurs.</p>
+</body>-->   
+<!--<body onhashchange="myFunction()">
+
+    <p>Click the button to change the anchor part of the current URL to #part5</p>
+    
+    <button onclick="changePart()">Try it</button>
+    
+    <p id="demo"></p>
+</body>-->    
+<!--<body onload="myFunction()">
+    <h1>Hello World!</h1>
+</body>-->
+<!--<body ononline="onFunction()" onoffline="offFunction()">
+
+    <p>Open the File menu and click on "Work Offline" to toggle between working online and offline.</p>
+    
+    <p><strong>Note:</strong> The ononline and onoffline events are only supported in Firefox and Internet Explorer version 8 to 10.</p>
+</body>-->
+<!--<body onpageshow="myFunction()">
+
+    <h1>Hello World!</h1>
+</body>-->
+<!--<body onresize="myFunction()">
+
+    <p>Try to resize the browser window.</p>
+</body>
+<body onunload="myFunction()">
+
+    <h1>Welcome to my Home Page</h1>
+    
+    <p>Close this window or press F5 to reload the page.</p>
+    <p><strong>Note:</strong> Due to different browser settings, this event may not always work as expected.</p>
+</body>
+<body>
+   <input type="text" oncopy="myFunction()" value="Try to copy this text">
+
+<p id="demo"></p>
+</body>
+<body>
+<input type="text" oncut="myFunction()" value="Try to cut this text">
+
+<p id="demo"></p>
+</body>-->
+<body>
+<input type="text" onpaste="myFunction()" value="Try to paste something in here" size="40">
+
+<p id="demo"></p>
+
+<script>
+// function myFunction() {
+//  alert("This document is now being printed");
+// }
+
+//function myFunction() {
+  //    alert("You are about to print this document!");
+   // }
+
+//   function myFunction() {
+//      return "Write something clever here...";
+//    }
+
+//    function myFunction() {
+//      alert("The image could not be loaded.");
+//    }
+
+    // Using the location.hash property to change the anchor part
+//    function changePart() {
+//      location.hash = "part5";
+//      var x = "The anchor part is now: " + location.hash;
+//      document.getElementById("demo").innerHTML = x;
+//    }
+    
+    // Alert some text if there has been changes to the anchor part
+ //   function myFunction() {
+//      alert("The anchor part has changed!");
+//    }
+
+// function myFunction() {
+//  alert("Page is loaded");
+// }
+
+// function onFunction() {
+//      alert ("Your browser is working online.");
+//    }
+    
+//    function offFunction() {
+//      alert ("Your browser is working offline.");
+//    }
+
+// function myFunction() {
+//      alert("Welcome!");
+//    }
+
+// function myFunction() {
+//      alert("You have changed the size of the browser window!");
+//    }
+
+//function myFunction() {
+//      alert("Thank you for visiting W3Schools!");
+//    }
+
+// function myFunction() {
+//  document.getElementById("demo").innerHTML = "You copied text!"
+// }
+
+// function myFunction() {
+//  document.getElementById("demo").innerHTML = "You cut text!";
+// }
+
+function myFunction() {
+  document.getElementById("demo").innerHTML = "You pasted text!";
+}
+
+</script>
+
+</body>
+</html>
