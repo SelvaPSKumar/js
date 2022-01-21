@@ -63,6 +63,12 @@ First name: <input type="text" name="fname" spellcheck="true">
 <!--End Attribute-->
 
 <!--Started DOM-->
+<img id="img" src="https://en.js.cx/clipart/train.gif?speed=1&cache=0">
+
+<img id="img" src="https://en.js.cx/clipart/train.gif?speed=1&cache=0">
+
+<iframe src="iframe.html" onload="log('iframe onload')"></iframe>
+<img src="http://en.js.cx/clipart/train.gif" id="img">
 
     <script>
         function showDetails(animal) {
@@ -93,7 +99,41 @@ newElement.style.textAlign = "center"
 const container = document.getElementById("ElemenContainer");
 container.append(newElement);
 
+document.addEventListener("DOMContentLoaded", ready);
 
+function ready() {
+    alert('DOM is ready');
+    // image is not yet loaded (unless was cached), so the size is 0x0
+    alert(<code data-enlighter-language="generic" class="EnlighterJSRAW">Image size: ${img.offsetWidth}x${img.offsetHeight}</code>);
+  }
+  document.addEventListener("DOMContentLoaded", ready);
+
+  window.onload = function() {
+    alert('Page loaded');
+    // image is loaded at this time
+    alert(<code data-enlighter-language="generic" class="EnlighterJSRAW">Image size: ${img.offsetWidth}x${img.offsetHeight}</code>);
+  };
+
+  window.onbeforeunload = function() {
+  return "There are unsaved changes. Leave now?";
+};
+function work() { /*...*/ } 
+if (document.readyState == 'loading') {   
+document.addEventListener('DOMContentLoaded', work); } else {   work();
+}// current state
+console.log(document.readyState);
+
+// print state changes
+document.addEventListener('readystatechange', () => console.log(document.readyState));
+function log(text) { /* output the time and message */ }
+  log('initial readyState:' + document.readyState);
+  document.addEventListener('readystatechange', () => log('readyState:' + document.readyState));
+  document.addEventListener('DOMContentLoaded', () => log('DOMContentLoaded'));
+  window.onload = () => log('window onload');
+  img.onload = () => log('img onload');
+
+
+  
     </script>
 
 </body>
