@@ -1,0 +1,143 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <title>
+        Dom Practice
+    </title>
+    <link rel="stylesheet" href="style.css">
+</head>
+
+<body>
+
+    <hr>
+    <div style="display: flex;">
+        <div class="employee-form">
+            <form onsubmit="event.preventDefault();onFormSubmit();" autocomplete="off">
+                <div style="margin: 4px;">
+                    <label>Name</label><label class="validation-error hide" id="fullNameValidationError"></label>
+                    <input type="text" name="fullName" id="fullName">
+                </div>
+                <div style="margin: 4px;">
+                    <label>Address</label>
+                    <div><textarea id="addr" placeholder="Fill your..." name="addr" rows="3" cols="21"></textarea>
+                    </div>
+                </div>
+                <div style="margin: 4px;">
+                    <label>Phone</label>
+                    <input type="number" name="number" id="number">
+                </div>
+                <div style="margin: 4px;">
+                    <label>Email Id</label>
+                    <input type="text" name="email" id="email">
+                </div>
+                <div style="margin: 4px;">
+                    <label>Status</label>
+                    <div><input type="radio" name="radio" id="radio">Active</div>
+                    <div><input type="radio" name="radio" id="radio">In Active</div>
+                </div>
+                <div style="margin: 4px;" class="form-action-buttons">
+                    <input type="submit" value="Submit">
+                </div>
+            </form>
+        </div>
+        <br />
+        <div class="employees-table">
+            <table class="list" id="employeeList">
+                <thead>
+                    <tr>
+                        <th>Name</th>
+                        <th>Address</th>
+                        <th>Phone</th>
+                        <th>Email</th>
+                        <th>Status</th>
+                        <th>Actions</th>
+                    </tr>
+                </thead>
+                <tbody>
+
+                </tbody>
+            </table>
+        </div>
+    </div>
+    <script>
+        var selectedRow = null
+
+        function onFormSubmit() {
+            if (validate()) {
+                var formData = readFormData();
+                if (selectedRow == null)
+                    insertNewRecord(formData);
+                else
+                    updateRecord(formData);
+                resetForm();
+            }
+        }
+
+        function readFormData() {
+            var formData = {};
+            formData["fullName"] = document.getElementById("fullName").value;
+            formData["addr"] = document.getElementById("addr").value;
+            formData["number"] = document.getElementById("number").value;
+            formData["email"] = document.getElementById("email").value;
+            
+            return formData;
+        }
+
+        function insertNewRecord(data) {
+            var table = document.getElementById("employeeList").getElementsByTagName('tbody')[0];
+            var newRow = table.insertRow(table.length);
+            cell1 = newRow.insertCell(0);
+            cell1.innerHTML = data.fullName;
+            cell2 = newRow.insertCell(1);
+            cell2.innerHTML = data.addr;
+            cell3 = newRow.insertCell(2);
+            cell3.innerHTML = data.number;
+            cell4 = newRow.insertCell(3);
+            cell4.innerHTML = data.email;
+        
+            cell5 = newRow.insertCell(5);
+            cell5.innerHTML = `<a onClick="onEdit(this)">Edit</a>`;
+        }
+
+        function resetForm() {
+            document.getElementById("fullName").value = "";
+            document.getElementById("addr").value = "";
+            document.getElementById("number").value = "";
+            document.getElementById("email").value = "";
+        
+            selectedRow = null;
+        }
+
+        function onEdit(td) {
+            selectedRow = td.parentElement.parentElement;
+            document.getElementById("fullName").value = selectedRow.cells[0].innerHTML;
+            document.getElementById("addr").value = selectedRow.cells[1].innerHTML;
+            document.getElementById("number").value = selectedRow.cells[2].innerHTML;
+            document.getElementById("email").value = selectedRow.cells[1].innerHTML;
+        
+        }
+        function updateRecord(formData) {
+            selectedRow.cells[0].innerHTML = formData.fullName;
+            selectedRow.cells[1].innerHTML = formData.addr;
+            selectedRow.cells[2].innerHTML = formData.number;
+            selectedRow.cells[1].innerHTML = formData.email;
+        
+        }
+
+        function validate() {
+            isValid = true;
+            if (document.getElementById("fullName").value == "") {
+                isValid = false;
+                document.getElementById("fullNameValidationError").classList.remove("hide");
+            } else {
+                isValid = true;
+                if (!document.getElementById("fullNameValidationError").classList.contains("hide"))
+                    document.getElementById("fullNameValidationError").classList.add("hide");
+            }
+            return isValid;
+        }
+    </script>
+</body>
+
+</html>

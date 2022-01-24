@@ -1,0 +1,31 @@
+<html>
+
+<head>
+    <title>load unload before</title>
+
+    <script>
+
+        function onlds(x) {
+
+            alert(x + " This is Onload");
+        }
+
+        function onunlds(y) {
+
+            alert(y + " unload");
+        }
+
+        function bfunlds() {
+
+  event.returnValue = "There are unsaved changes. Leave now?";
+
+        }
+    </script>
+</head>
+
+<body onload="onlds('hi');" onunload="onunlds('hai'); " onbeforeunload="bfunlds();">
+    <h1>Welcome Load, Un, Before</h1>
+    <a href="https://tilomitra.com/html-page-lifecycle-events/">Web Page Life Cycle </a>
+</body>
+
+</html>
