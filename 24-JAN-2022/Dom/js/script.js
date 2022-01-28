@@ -55,8 +55,8 @@ function insertNewRecord(data) {
     cell5 = newRow.insertCell(4);
     cell5.innerHTML = data.Status;
     cell6 = newRow.insertCell(5);
-    cell6.innerHTML = `<a onClick="onEdit(this)">Edit</a>
-                        <a onClick="onDelete(this)">Delete</a>;`
+    cell6.innerHTML = `<a onClick="onEdit(this)" id="edit" value="edit" class="button button1">Edit</a>
+                        <a onClick="onDelete(this)" id="dlt" value="dlt" class="button button2">Delete</a>;`
 }
 
 function resetForm() {
@@ -68,7 +68,9 @@ function resetForm() {
     selectedRow = null;
 }
 
+
 function onEdit(td) {
+
     selectedRow = td.parentElement.parentElement;
     document.getElementById("fullName").value = selectedRow.cells[0].innerHTML;
     document.getElementById("addr").value = selectedRow.cells[1].innerHTML;
@@ -76,6 +78,7 @@ function onEdit(td) {
     document.getElementById("email").value = selectedRow.cells[3].innerHTML;
     document.getElementsByClassName("Status").value = selectedRow.cells[4].innerHTML;
 }
+
 function updateRecord(formData) {
     selectedRow.cells[0].innerHTML = formData.fullName;
     selectedRow.cells[1].innerHTML = formData.addr;

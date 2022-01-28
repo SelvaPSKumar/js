@@ -126,3 +126,8 @@ body {
 .cent {
     text-align: center;
 }
+
+.list {
+    align-items: center;
+    border: 1;
+}
