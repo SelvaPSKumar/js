@@ -1,0 +1,103 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Index</title>
+</head>
+
+<body>
+
+    <h2>ES6+ Script Using Console</h2>
+    <script>
+        //ES6+
+
+        //Template Literals
+        const Currency1 = "Dollars";
+        const Currency2 = "Rupees";
+        const exchange_rate = 72;
+
+        news_string = "Today 100 " + Currency1 + " are trading for " + exchange_rate * 100 + " " + Currency2;
+        //The normal way
+        console.log(news_string);
+
+        //The template literal way
+        news_string_tl = `Today 100 ${Currency1} are trading for ${exchange_rate * 100} ${Currency2}`;
+        console.log(news_string_tl);
+
+        //Destructuring Object
+        const financialInfo = {
+            City: "New York",
+            Artform: "Jazz",
+            Artist: "Miles Davis",
+            TicketCurrency: "$",
+            Cost: 200,
+        };
+
+        const { Artist, TicketCurrency, Cost } = financialInfo;
+        console.log(`For ${Artist} please pay ${Cost}${TicketCurrency}`);
+
+        //Object destructuring with alias creation
+        const { Artist: a, TicketCurrency: tc, Cost: c } = financialInfo;
+        console.log(`For ${a} please pay ${c}${tc}`);
+
+
+        //For-of Loop
+        let details = [11, 13, 17, "Prime Numbers"];
+
+        //Looping through array
+        for (const detail of details) {
+            console.log(detail);
+        }
+
+        //Spread Operator
+        array1 = [1, 2, 3, 5];
+        object1 = {
+            key1: "value1",
+            key2: "value2",
+        };
+
+        //Spread operator in array
+        array2 = [10, ...array1];
+        console.log(array2);
+
+        //Spread operator in object
+        object2 = {
+            key3: "value3",
+            ...object1,
+        };
+        console.log(object2);
+
+        //Arrow Functions
+        //The old way of writing functions
+        var addf = function add(x, y) {
+            var sum = x + y;
+            return sum;
+        };
+        console.log(`The sum is : ${addf(10, 20)}`);
+
+        //The new way of writing functions
+        var newAdd = (x, y) => x + y;
+        console.log(`The sum is : ${newAdd(10, 20)}`);
+
+        //Default Parameters
+        //Default parameter z
+        var sum = function (x, y, z = 10) {
+            return x + y + z;
+        };
+        console.log(`Sum = ${sum(10, 20)}`);
+        console.log(`Sum = ${sum(10, 20, 5)}`);
+
+        //Sets
+        //Create set from an array
+        var set1 = new Set([1, 2, 2, 3, 3, 3, 4, 4, 4, 4]);
+        console.log(set1);
+        //Add a new element to it
+        set1.add(5);
+        console.log(set1);
+    </script>
+</body>
+
+</html>
