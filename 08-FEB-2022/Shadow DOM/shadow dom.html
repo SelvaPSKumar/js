@@ -41,7 +41,7 @@ input::-webkit-slider-runnable-track {
     <item>Fruit Toast</item>
     <item>Cup Cake</item>
   </custom-menu><br>
-<br>
+  <br>
 
   <!--Named Slots-->
   <user-card>
@@ -52,12 +52,12 @@ input::-webkit-slider-runnable-track {
 
   <user-card>
     <!--shadow-root-->
-      <div>Name:
-        <slot name="username1"></slot>
-      </div>
-      <div>Birthday:
-        <slot name="birthday1"></slot>
-      </div>
+    <div>Name:
+      <slot name="username1"></slot>
+    </div>
+    <div>Birthday:
+      <slot name="birthday1"></slot>
+    </div>
     <span slot="username1">John Smith</span>
     <span slot="birthday1">01.01.2001</span>
   </user-card><br>
@@ -65,18 +65,25 @@ input::-webkit-slider-runnable-track {
 
   <user-card>
     <!--shadow-root-->
-      <div>Name:
-        <slot name="username2">
-          <!-- slotted element is inserted into the slot -->
-          <span slot="username2">John Smith</span>
-        </slot>
-      </div>
-      <div>Birthday:
-        <slot name="birthday2">
-          <span slot="birthday2">01.01.2001</span>
-        </slot>
-      </div>
-  </user-card>
+    <div>Name:
+      <slot name="username2">
+        <!-- slotted element is inserted into the slot -->
+        <span slot="username2">John Smith</span>
+      </slot>
+    </div>
+    <div>Birthday:
+      <slot name="birthday2">
+        <span slot="birthday2">01.01.2001</span>
+      </slot>
+    </div>
+  </user-card><br>
+  <br>
+
+  <!--SLot Fallback Content-->
+  <div>Name:
+    <slot name="username">Anonymous</slot>
+  </div><br>
+  <br>
 
   <!--Default Slot: First Unnamed-->
   <user-card>
@@ -97,36 +104,55 @@ input::-webkit-slider-runnable-track {
   <br>
 
   <template id="tmpl">
-    <style> /* menu styles */ </style>
+    <style>
+      /* menu styles */
+    </style>
     <div class="menu">
       <slot name="title"></slot>
-      <ul><slot name="item"></slot></ul>
+      <ul>
+        <slot name="item"></slot>
+      </ul>
     </div>
   </template><br>
   <br>
 
   <custom-menu>
     <!--shadow-root-->
-      <style> /* menu styles */ </style>
-      <div class="menu">
-        <slot name="title">
-          <span slot="title">Candy menu</span>
+    <style>
+      /* menu styles */
+    </style>
+    <div class="menu">
+      <slot name="title">
+        <span slot="title">Candy menu</span>
+      </slot>
+      <ul>
+        <slot name="item">
+          <li slot="item">Lollipop</li>
+          <li slot="item">Fruit Toast</li>
+          <li slot="item">Cup Cake</li>
         </slot>
-        <ul>
-          <slot name="item">
-            <li slot="item">Lollipop</li>
-            <li slot="item">Fruit Toast</li>
-            <li slot="item">Cup Cake</li>
-          </slot>
-        </ul>
-      </div>
+      </ul>
+    </div>
   </custom-menu><br>
   <br>
+
+  <!--Updating Slots-->
+  <custom-menu id="menu">
+    <span slot="title">Candy menu</span>
+  </custom-menu><br>
+  <br>
+
+  <!--Slot API-->
+  <custom-menu id="menu">
+    <span slot="title">Candy menu</span>
+    <li slot="item">Lollipop</li>
+    <li slot="item">Fruit Toast</li>
+  </custom-menu>
 
 
 
   <script>
-    
+
     elem.attachShadow({ mode: 'open' });
 
     // shadow tree has its own style (2)
@@ -144,9 +170,9 @@ input::-webkit-slider-runnable-track {
 
     //Named Slots
     customElements.define('user-card', class extends HTMLElement {
-  connectedCallback() {
-    this.attachShadow({mode: 'open'});
-    this.shadowRoot.innerHTML = `
+      connectedCallback() {
+        this.attachShadow({ mode: 'open' });
+        this.shadowRoot.innerHTML = `
       <div>Name:
         <slot name="username"></slot>
       </div>
@@ -154,17 +180,17 @@ input::-webkit-slider-runnable-track {
         <slot name="birthday"></slot>
       </div>
     `;
-  }
-});
+      }
+    });
 
-// light DOM <span> nodes are still at the same place, under `<user-card>`
-  alert( document.querySelectorAll('user-card span').length ); // 2
+    // light DOM <span> nodes are still at the same place, under `<user-card>`
+    alert(document.querySelectorAll('user-card span').length); // 2
 
-//Default Slot: First Unnamed
-customElements.define('user-card', class extends HTMLElement {
-  connectedCallback() {
-    this.attachShadow({mode: 'open'});
-    this.shadowRoot.innerHTML = `
+    //Default Slot: First Unnamed
+    customElements.define('user-card', class extends HTMLElement {
+      connectedCallback() {
+        this.attachShadow({ mode: 'open' });
+        this.shadowRoot.innerHTML = `
     <div>Name:
       <slot name="usernam"></slot>
     </div>
@@ -176,24 +202,75 @@ customElements.define('user-card', class extends HTMLElement {
       <slot></slot>
     </fieldset>
     `;
-  }
-});
+      }
+    });
 
-//Menu Example
-customElements.define('custom-menu', class extends HTMLElement {
-  connectedCallback() {
-    this.attachShadow({mode: 'open'});
+    //Menu Example
+    customElements.define('custom-menu', class extends HTMLElement {
+      connectedCallback() {
+        this.attachShadow({ mode: 'open' });
 
-    // tmpl is the shadow DOM template (above)
-    this.shadowRoot.append( tmpl.content.cloneNode(true) );
+        // tmpl is the shadow DOM template (above)
+        this.shadowRoot.append(tmpl.content.cloneNode(true));
 
-    // we can't select light DOM nodes, so let's handle clicks on the slot
-    this.shadowRoot.querySelector('slot[name="title"]').onclick = () => {
-      // open/close the menu
-      this.shadowRoot.querySelector('.menu').classList.toggle('closed');
-    };
-  }
-});
+        // we can't select light DOM nodes, so let's handle clicks on the slot
+        this.shadowRoot.querySelector('slot[name="title"]').onclick = () => {
+          // open/close the menu
+          this.shadowRoot.querySelector('.menu').classList.toggle('closed');
+        };
+      }
+    });
+
+    //Updating Slots
+    customElements.define('custom-menu', class extends HTMLElement {
+      connectedCallback() {
+        this.attachShadow({ mode: 'open' });
+        this.shadowRoot.innerHTML = `<div class="menu">
+      <slot name="title"></slot>
+      <ul><slot name="item"></slot></ul>
+    </div>`;
+
+        // shadowRoot can't have event handlers, so using the first child
+        this.shadowRoot.firstElementChild.addEventListener('slotchange',
+          e => alert("slotchange: " + e.target.name)
+        );
+      }
+    });
+
+    setTimeout(() => {
+      menu.insertAdjacentHTML('beforeEnd', '<li slot="item">Lollipop</li>')
+    }, 1000);
+
+    setTimeout(() => {
+      menu.querySelector('[slot="title"]').innerHTML = "New menu";
+    }, 2000);
+
+    //Slot API
+    customElements.define('custom-menu', class extends HTMLElement {
+      items = []
+
+      connectedCallback() {
+        this.attachShadow({ mode: 'open' });
+        this.shadowRoot.innerHTML = `<div class="menu">
+      <slot name="title"></slot>
+      <ul><slot name="item"></slot></ul>
+    </div>`;
+
+        // triggers when slot content changes
+        this.shadowRoot.firstElementChild.addEventListener('slotchange', e => {
+          let slot = e.target;
+          if (slot.name == 'item') {
+            this.items = slot.assignedElements().map(elem => elem.textContent);
+            alert("Items: " + this.items);
+          }
+        });
+      }
+    });
+
+    // items update after 1 second
+    setTimeout(() => {
+      menu.insertAdjacentHTML('beforeEnd', '<li slot="item">Cup Cake</li>')
+    }, 1000);
 
   </script>
 </body>
