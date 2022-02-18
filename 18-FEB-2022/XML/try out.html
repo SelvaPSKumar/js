@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<html>
+<body>
+
+<!--Get-->
+<div id="demo">
+<h2>The XMLHttpRequest Object</h2>
+<button type="button" onclick="loadDoc()">Change Content</button>
+</div>
+
+<!--Post-->
+<h2>The XMLHttpRequest Object</h2>
+<button type="button" onclick="loadDocu()">Request data</button>
+
+<p id="demo1"></p>
+
+<!--Async-->
+<h2>The XMLHttpRequest Object</h2>
+
+<p id="demo2">Let AJAX change this text.</p>
+
+<button type="button" onclick="loadDocum()">Change Content</button>
+
+<script>
+    //Get
+function loadDocum() {
+  const xhttp = new XMLHttpRequest();
+  xhttp.onload = function() {
+    document.getElementById("demo2").innerHTML =
+    this.responseText;
+  }
+  xhttp.open("GET", "ajax_info.txt");
+  xhttp.send();
+}
+
+//Post
+function loadDocu() {
+  const xhttp = new XMLHttpRequest();
+  xhttp.onload = function() {
+    document.getElementById("demo1").innerHTML = this.responseText;
+  }
+  xhttp.open("POST", "demo1_post.asp");
+  xhttp.send();
+}
+</script>
+
+</body>
+</html>
