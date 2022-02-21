@@ -6,6 +6,7 @@ var span = document.getElementsByClassName("close")[0];
 
 btn.onclick = function () {
     dom.style.display = "block";
+    isValid = true;
 }
 
 span.onclick = function () {
@@ -70,7 +71,8 @@ function resetForm() {
 
 
 function onEdit(td) {
-
+    dom.style.display = "block";
+    isValid = true;
     selectedRow = td.parentElement.parentElement;
     document.getElementById("fullName").value = selectedRow.cells[0].innerHTML;
     document.getElementById("addr").value = selectedRow.cells[1].innerHTML;
