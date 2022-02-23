@@ -1,0 +1,93 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Sending Form Data with Fetch</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+
+<body class="body-parser">
+    <h1>Sending Form Data with Fetch</h1><br>
+
+    <form action="https://jsonplaceholder.typicode.com/users" id="myForm">
+        <label for="inp_username">Username</label><br>
+        <input type="text" name="inp_username" id="inp_username" placeholder="Enter your username"><br><br>
+        <label for="inp_password">Password</label><br>
+        <input type="text" name="inp_password" id="inp_password" placeholder="Enter your password"><br><br>
+        <button type="submit" value="Create new user">Login</button>
+    </form>
+
+    <script>
+        const myForm = document.getElementById("myForm");
+
+        myForm.addEventListener('submit', handleFormSubmit);
+
+        async function handleFormSubmit(event) {
+            event.preventDefault();
+
+            const form = event.currentTarget;
+
+            const url = form.action;
+
+            try {
+                const formData = new FormData(form);
+
+                const responseData = await postFormDataAsJson({ url, formData });
+
+                console.log({ responseData });
+            }
+            catch (error) {
+                console.error(error);
+            }
+        }
+
+        async function postFormDataAsJson({ url, formData }) {
+
+            const plainFormData = Object.fromEntries(formData.entries());
+            const formDataJsonString = JSON.stringify(plainFormData);
+
+            const fetchOptions = {
+                method: "POST",
+                headers: {
+                    "Content-Type": "application/json",
+                    "Accept": "application/json"
+                },
+                body: formDataJsonString,
+            };
+
+            const response = await fetch(url, fetchOptions);
+
+            if (!response.ok) {
+                const errorMessage = await response.text();
+                throw new Error(errorMessage);
+            }
+
+            return response.json();
+        }
+
+        const bodyParser = require("body-parser");
+
+        app.use(bodyParser.json());
+
+        app.post("/user", (request, response) => {
+
+            /**
+             * In a real application, the data in `request.body` should
+             * be validated before its used for anything e.g. inserting
+             * into a database.
+             */
+
+            const newUser = {
+                first_name: request.body.first_name,
+                last_name: request.body.last_name
+            };
+
+            response.status(201).json(newUser);
+        });
+    </script>
+</body>
+
+</html>
