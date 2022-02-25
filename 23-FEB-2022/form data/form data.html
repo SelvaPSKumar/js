@@ -1,0 +1,171 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Registration Form</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+
+<body>
+    <h1>Registration Form</h1><br>
+
+    <form onsubmit="event.preventDefault();callvalue()" autocomplete="off"
+        action="https://jsonplaceholder.typicode.com/users" id="myForm">
+        <fieldset>
+            <label for="inp_username">Username</label><label class="validation-error hide" id="fullNameValidationError"></label<br><br>
+                <input type="text" name="inp_username" id="inp_username" placeholder="Enter your username"><br><br>
+                <label for="inp_email">EMail</label><br>
+                <input type="text" name="inp_email" id="inp_email" placeholder="Enter your email"><br><br>
+                <label for="inp_mobile">Mobile no</label><br>
+                <input type="number" name="inp_mobile" id="inp_mobile" placeholder="Enter your mobile no"><br><br>
+                <button type="submit" value="register">Login</button>
+        </fieldset>
+    </form>
+
+    <div class="employees-table">
+        <table class="list" id="employeeList" cellspacing=3 cellpadding=6 id="data_table">
+            <thead>
+                <tr>
+                    <th>Name</th>
+                    <th>Email</th>
+                    <th>Phone</th>
+                </tr>
+            </thead>
+            <tbody>
+
+            </tbody>
+        </table>
+    </div>
+
+    <script>
+        var selectedRow = null
+
+        function callvalue() {
+            if (validate()) {
+                var formData = readFormData();
+                if (selectedRow == null)
+                    insertNewRecord(formData);
+                else
+                    updateRecord(formData);
+                resetForm();
+            }
+        }
+
+        function readFormData() {
+            var formData = {};
+            formData["inp_username"] = document.getElementById("inp_username").value;
+            formData["inp_email"] = document.getElementById("inp_email").value;
+            formData["inp_mobile"] = document.getElementById("inp_mobile").value;
+            return formData;
+        }
+
+        function insertNewRecord(data) {
+            var table = document.getElementById("employeeList").getElementsByTagName('tbody')[0];
+            var newRow = table.insertRow(table.length);
+            cell1 = newRow.insertCell(0);
+            cell1.innerHTML = data.inp_username;
+            cell2 = newRow.insertCell(1);
+            cell2.innerHTML = data.inp_email;
+            cell3 = newRow.insertCell(2);
+            cell3.innerHTML = data.inp_mobile;
+            cell4 = newRow.insertCell(3);
+            cell4.innerHTML = `<a onClick="onEdit(this)" id="edit" value="edit" class="button button1">Edit</a>
+                        <a onClick="onDelete(this)" id="dlt" value="dlt" class="button button2">Dlt</a>;`
+        }
+
+        function resetForm() {
+            document.getElementById("inp_username").value = "";
+            document.getElementById("inp_email").value = "";
+            document.getElementById("inp_mobile").value = "";
+            selectedRow = null;
+        }
+
+
+        function onEdit(td) {
+            selectedRow = td.parentElement.parentElement;
+            document.getElementById("inp_username").value = selectedRow.cells[0].innerHTML;
+            document.getElementById("inp_email").value = selectedRow.cells[1].innerHTML;
+            document.getElementById("inp_mobile").value = selectedRow.cells[2].innerHTML;
+        }
+
+        function updateRecord(formData) {
+            selectedRow.cells[0].innerHTML = formData.inp_username;
+            selectedRow.cells[1].innerHTML = formData.inp_email;
+            selectedRow.cells[2].innerHTML = formData.inp_mobile;
+        }
+
+        function onDelete(td) {
+            if (confirm('Are you sure to delete this record ?')) {
+                row = td.parentElement.parentElement;
+                document.getElementById("employeeList").deleteRow(row.rowIndex);
+                resetForm();
+            }
+        }
+
+        function validate() {
+            isValid = true;
+            if (document.getElementById("inp_username").value == "") {
+                isValid = false;
+                document.getElementById("fullNameValidationError").classList.remove("hide");
+            } else {
+                isValid = true;
+                if (!document.getElementById("fullNameValidationError").classList.contains("hide"))
+                    document.getElementById("fullNameValidationError").classList.add("hide");
+            }
+            return isValid;
+        }
+
+        const myForm = document.getElementById("myForm");
+
+        myForm.addEventListener('submit', handleFormSubmit);
+
+        async function handleFormSubmit(event) {
+            event.preventDefault();
+
+            const form = event.currentTarget;
+
+            const url = form.action;
+
+            try {
+                const formData = new FormData(form);
+
+                const responseData = await postFormDataAsJson({ url, formData });
+
+                console.log({ responseData });
+            }
+            catch (error) {
+                console.error(error);
+            }
+        }
+
+        async function postFormDataAsJson({ url, formData }) {
+
+            const plainFormData = Object.fromEntries(formData.entries());
+            const formDataJsonString = JSON.stringify(plainFormData);
+
+            const fetchOptions = {
+                method: "POST",
+                headers: {
+                    "Content-Type": "application/json",
+                    "Accept": "application/json"
+                },
+                body: formDataJsonString,
+            };
+
+            const response = await fetch(url, fetchOptions);
+
+            if (!response.ok) {
+                const errorMessage = await response.text();
+                throw new Error(errorMessage);
+            }
+
+            return response.json();
+        }
+
+    </script>
+</body>
+
+</html>
