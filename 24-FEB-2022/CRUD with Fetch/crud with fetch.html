@@ -1,0 +1,116 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>CRUD with Fetch API</title>
+    <style>
+        span+a {
+            display: inline-block;
+            margin-left: 1em;
+            cursor: pointer;
+        }
+    </style>
+</head>
+
+<body>
+    <h1>CRUD Functions Using Fetch API</h1>
+
+    <form>
+        <!-- action="https://jsonplaceholder.typicode.com/users" id="myForm" -->
+        <label for='todo'>Todo:</label>
+        <input type='text' id='todo'>
+        <!-- <button type="submit" value="submit">Submit</button> -->
+    </form>
+
+    <ul class="todos"></ul>
+
+    <script>
+        // const myForm = document.getElementById("myForm");
+
+        // myForm.addEventListener('submit', handleFormSubmit);
+
+        // async function handleFormSubmit(event) {
+        //     event.preventDefault();
+
+        //     const form = event.currentTarget;
+
+        //     const url = form.action;
+
+        //     try {
+        //         const formData = new FormData(form);
+
+        //         const responseData = await postFormDataAsJson({ url, formData });
+
+        //         console.log({ responseData });
+        //     }
+        //     catch (error) {
+        //         console.error(error);
+        //     }
+        // }
+
+        var apiUrl = 'https://stopgap.store/48277/todos'
+        var form = document.querySelector('form')
+        var input = document.getElementById('todo')
+        var todos = document.querySelector('.todos')
+        form.addEventListener("submit", create)
+        function create(event) {
+            event.preventDefault()
+            fetch(apiUrl, {
+                method: 'POST',
+                body: JSON.stringify({
+                    text: input.value
+                })
+            }).then(function (response) {
+                response.json().then(li)
+            })
+        }
+
+        function update(event) {
+            var id = event.target.getAttribute("data-id")
+            fetch(apiUrl + "/" + id + ".json", {
+                method: 'PATCH',
+                body: JSON.stringify({
+                    text: event.target.innerText
+                })
+            }).then(function (response) {
+                response.json().then(function (todo) {
+                    console.log(todo)
+                })
+            })
+        }
+        function li(todo) {
+            var l = document.createElement("li")
+            var span = document.createElement("span")
+            span.setAttribute("contenteditable", true)
+            span.setAttribute("data-id", todo.id)
+            span.innerHTML = todo.text
+            span.addEventListener("blur", update)
+            l.appendChild(span)
+            var a = document.createElement("a")
+            a.innerHTML = '&times;'
+            a.addEventListener("click", remove)
+            a.setAttribute("data-id", todo.id)
+            l.appendChild(a)
+            todos.appendChild(l)
+        }
+        function remove(event) {
+            event.preventDefault()
+            var id = event.target.getAttribute("data-id")
+            fetch(apiUrl + "/" + id, {
+                method: 'DELETE'
+            }).then(function () {
+                todos.removeChild(event.target.parentNode)
+            })
+        }
+        fetch(apiUrl + ".json").then(function (response) {
+            response.json().then(function (todos) {
+                todos.forEach(li)
+            })
+        })
+    </script>
+</body>
+
+</html>

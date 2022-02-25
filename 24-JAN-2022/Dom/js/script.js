@@ -22,6 +22,9 @@ window.onclick = function (event) {
 var selectedRow = null
 
 function onFormSubmit() {
+    
+    
+
     if (validate()) {
         var formData = readFormData();
         if (selectedRow == null)
@@ -30,6 +33,8 @@ function onFormSubmit() {
             updateRecord(formData);
         resetForm();
     }
+
+    
 }
 
 function readFormData() {

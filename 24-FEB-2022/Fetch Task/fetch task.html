@@ -2,96 +2,320 @@
 <html lang="en">
 
 <head>
-    <meta charset="utf-8">
+    <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <meta name="viewport" content="width=device-width, initial-scale=1">
-    <title>Fetch Task</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <!-- CSS only -->
     <link rel="stylesheet" href="style.css">
-    <link href="https://fonts.googleapis.com/css?family=Varela+Round" rel="stylesheet">
-    <link rel="stylesheet" href="https://fonts.googleapis.com/icon?family=Material+Icons">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+    <!-- Bootstrap -->
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/css/bootstrap.min.css" rel="stylesheet">
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/js/bootstrap.bundle.min.js"></script>
-    <script>
-        // Prevent dropdown menu from closing when click inside the form
-        $(document).on("click", ".navbar-right .dropdown-menu", function (e) {
-            e.stopPropagation();
-        });
-    </script>
 </head>
 
 <body>
-    <!--Navbar-->
-    <div>
-        <nav class="navbar navbar-light bg-light justify-content-around px-3 bg-light border-top"><div class="navbar-header">
-            <a class="navbar-brand" href="#"><b>Fetch</b>Data</a>
-        </div>
-            <ul class=" sos navbar-nav d-flex flex-row">
-                <li class=" mx-2 nav-item active ">
-                    <a class="nav-link " href="#">Home</a>
+    <div class="container1">
+        <div class="navigation">
+            <!-- Sidebar Lists -->
+            <ul>
+                <li>
+                    <a href="#">
+                        <span class="icon"><i class="fa fa-apple" aria-hidden="true"></i></span>
+                        <span class="title"> FETCH DATA</span>
+                    </a>
                 </li>
-                <li class="mx-2 nav-item active">
-                    <a class="nav-link" href="#">About Us</a>
+                <li>
+                    <a href="#">
+                        <span class="icon"><i class="fa fa-home" aria-hidden="true"></i></span>
+                        <span class="title"> Dashboard</span>
+                    </a>
                 </li>
-                <li class="mx-2 nav-item active">
-                    <a class="nav-link" href="#">Services</a>
+                <li>
+                    <a href="#">
+                        <span class="icon"><i class="fa fa-comment" aria-hidden="true"></i></span>
+                        <span class="title"> Message</span>
+                    </a>
                 </li>
-                <li class="mx-2 nav-item active">
-                    <a class="nav-link" href="#">Contact Us</a>
+                <li>
+                    <a href="#">
+                        <span class="icon"><i class="fa fa-info-circle" aria-hidden="true"></i></span>
+                        <span class="title"> Help</span>
+                    </a>
+                </li>
+                <li>
+                    <a href="#">
+                        <span class="icon"><i class="fa fa-cog" aria-hidden="true"></i></span>
+                        <span class="title"> Settings</span>
+                    </a>
                 </li>
             </ul>
-            <form class="navbar-form form-inline">
-                <div class="input-group search-box">
-                    <input type="text" id="search" class="form-control" placeholder="Search here...">
-                </div>
-            </form>
-            <ul class="nav navbar-nav navbar-right">
-                <li>
-                    <!-- Button trigger modal -->
-                    <button type="button" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#exampleModal">
-                        Login
-                    </button>
+        </div>
 
-                    <!-- Modal -->
-                    <div class="modal fade" id="exampleModal" tabindex="-1" aria-labelledby="exampleModalLabel"
-                        aria-hidden="true">
-                        <div class="modal-dialog">
-                            <div class="modal-content">
-                                <div class="modal-header">
-                                    <h5 class="modal-title" id="exampleModalLabel">Login Your Information</h5>
-                                    <button type="button" class="btn-close" data-bs-dismiss="modal"
-                                        aria-label="Close"></button>
-                                </div>
-                                <div class="modal-body">
-                                    <form>
-                                        <div class="form-group">
-                                            <input type="text" class="form-control" placeholder="Username" required="required">
-                                        </div><br>
-                                        <div class="form-group">
-                                            <input type="password" class="form-control" placeholder="Password" required="required">
-                                        </div><br>
-                                        <input type="submit" class="btn btn-primary btn-block" value="Submit">
-                                        <div class="form-footer"><br>
-                                            <a href="#">Forgot Your password?</a>
-                                        </div>
-                                    </form>
-                                </div>
-                                <div class="modal-footer">
-                                    <button type="button" class="btn btn-secondary"
-                                        data-bs-dismiss="modal">Close</button>
-                                </div>
+        <div class="main">
+            <div class="topbar">
+                <div class="tobar" onclick="tobarMenu()"></div>
+                <div class="search">
+                    <!-- Search Box and Search Button -->
+                    <label>
+                        <input type="text" placeholder="Search your id">
+                        <i class="fa fa-search" aria-hidden="true"></i>
+                        <button type="submit" class="btn">Search</button>
+                    </label>
+                </div>
+
+                <!-- Login Form Modal -->
+                <!-- Button trigger modal -->
+                <button type="button" class="btn btn-outline-primary" data-bs-toggle="modal"
+                    data-bs-target="#exampleModal">
+                    Login
+                </button>
+
+                <!-- Modal -->
+                <div class="modal fade" id="exampleModal" tabindex="-1" aria-labelledby="exampleModalLabel"
+                    aria-hidden="true">
+                    <div class="modal-dialog">
+                        <div class="modal-content">
+                            <div class="modal-header">
+                                <h5 class="modal-title" id="exampleModalLabel">Login your information</h5>
+                                <button type="button" class="btn-close" data-bs-dismiss="modal"
+                                    aria-label="Close"></button>
+                            </div>
+                            <div class="modal-body">
+                                <form>
+                                    <div class="form-group">
+                                        <input type="email" class="form-control" placeholder="Enter your email"
+                                            required="required">
+                                    </div><br>
+                                    <div class="form-group">
+                                        <input type="password" class="form-control" placeholder="Enter your password"
+                                            required="required">
+                                    </div><br>
+                                    <input type="submit" class="btn btn-primary btn-block" value="Submit">
+                                    <div class="form-footer"><br>
+                                        <a href="#">Forgot Your password?</a>
+                                    </div>
+                                </form>
+                            </div>
+                            <div class="modal-footer">
+                                <button type="button" class="btn btn-danger" data-bs-dismiss="modal">Close</button>
                             </div>
                         </div>
                     </div>
-        </nav>
-    </div>
-    <!--Navbar-->
-            
-                    
-
-                </li>
-            </ul>
+                </div>
+                <!-- Login Form Modal -->
+            </div>
         </div>
-    </nav>
+        <!-- Table -->
+        <table id="" class="display">
+            <thead>
+                <tr>
+                    <th>Name</th>
+                    <th>Position</th>
+                    <th>Office</th>
+                    <th>Age</th>
+                    <th>Salary</th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr>
+                    <td>Tiger Nixon</td>
+                    <td>System Architect</td>
+                    <td>Edinburgh</td>
+                    <td>61</td>
+                    <td>$320,800</td>
+                </tr>
+                <tr>
+                    <td>Cedric Kelly</td>
+                    <td>Senior Javascript Developer</td>
+                    <td>Edinburgh</td>
+                    <td>22</td>
+                    <td>$433,060</td>
+                </tr>
+                <tr>
+                    <td>Sonya Frost</td>
+                    <td>Software Engineer</td>
+                    <td>Edinburgh</td>
+                    <td>23</td>
+                    <td>$103,600</td>
+                </tr>
+                <tr>
+                    <td>Quinn Flynn</td>
+                    <td>Support Lead</td>
+                    <td>Edinburgh</td>
+                    <td>22</td>
+                    <td>$342,000</td>
+                </tr>
+                <tr>
+                    <td>Dai Rios</td>
+                    <td>Personnel Lead</td>
+                    <td>Edinburgh</td>
+                    <td>35</td>
+                    <td>$217,500</td>
+                </tr>
+                <tr>
+                    <td>Gavin Joyce</td>
+                    <td>Developer</td>
+                    <td>Edinburgh</td>
+                    <td>42</td>
+                    <td>$92,575</td>
+                </tr>
+                <tr>
+                    <td>Martena Mccray</td>
+                    <td>Post-Sales support</td>
+                    <td>Edinburgh</td>
+                    <td>46</td>
+                    <td>$324,050</td>
+                </tr>
+                <tr>
+                    <td>Jennifer Acosta</td>
+                    <td>Junior Javascript Developer</td>
+                    <td>Edinburgh</td>
+                    <td>43</td>
+                    <td>$75,650</td>
+                </tr>
+                <tr>
+                    <td>Shad Decker</td>
+                    <td>Regional Director</td>
+                    <td>Edinburgh</td>
+                    <td>51</td>
+                    <td>$183,000</td>
+                </tr>
+            </tbody>
+            <tfoot>
+                <tr>
+                    <th>Name</th>
+                    <th>Position</th>
+                    <th>Office</th>
+                    <th>Age</th>
+                    <th>Salary</th>
+                </tr>
+            </tfoot>
+        </table>
+        <table id="" class="display" style="width:100%">
+            <thead>
+                <tr>
+                    <th>Name</th>
+                    <th>Position</th>
+                    <th>Office</th>
+                    <th>Age</th>
+                    <th>Salary</th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr>
+                    <td>Jena Gaines</td>
+                    <td>Office Manager</td>
+                    <td>London</td>
+                    <td>30</td>
+                    <td>$90,560</td>
+                </tr>
+                <tr>
+                    <td>Haley Kennedy</td>
+                    <td>Senior Marketing Designer</td>
+                    <td>London</td>
+                    <td>43</td>
+                    <td>$313,500</td>
+                </tr>
+                <tr>
+                    <td>Tatyana Fitzpatrick</td>
+                    <td>Regional Director</td>
+                    <td>London</td>
+                    <td>19</td>
+                    <td>$385,750</td>
+                </tr>
+                <tr>
+                    <td>Michael Silva</td>
+                    <td>Marketing Designer</td>
+                    <td>London</td>
+                    <td>66</td>
+                    <td>$198,500</td>
+                </tr>
+                <tr>
+                    <td>Bradley Greer</td>
+                    <td>Software Engineer</td>
+                    <td>London</td>
+                    <td>41</td>
+                    <td>$132,000</td>
+                </tr>
+                <tr>
+                    <td>Angelica Ramos</td>
+                    <td>Chief Executive Officer (CEO)</td>
+                    <td>London</td>
+                    <td>47</td>
+                    <td>$1,200,000</td>
+                </tr>
+                <tr>
+                    <td>Suki Burks</td>
+                    <td>Developer</td>
+                    <td>London</td>
+                    <td>53</td>
+                    <td>$114,500</td>
+                </tr>
+                <tr>
+                    <td>Prescott Bartlett</td>
+                    <td>Technical Author</td>
+                    <td>London</td>
+                    <td>27</td>
+                    <td>$145,000</td>
+                </tr>
+                <tr>
+                    <td>Timothy Mooney</td>
+                    <td>Office Manager</td>
+                    <td>London</td>
+                    <td>37</td>
+                    <td>$136,200</td>
+                </tr>
+                <tr>
+                    <td>Bruno Nash</td>
+                    <td>Software Engineer</td>
+                    <td>London</td>
+                    <td>38</td>
+                    <td>$163,500</td>
+                </tr>
+                <tr>
+                    <td>Hermione Butler</td>
+                    <td>Regional Director</td>
+                    <td>London</td>
+                    <td>47</td>
+                    <td>$356,250</td>
+                </tr>
+                <tr>
+                    <td>Lael Greer</td>
+                    <td>Systems Administrator</td>
+                    <td>London</td>
+                    <td>21</td>
+                    <td>$103,500</td>
+                </tr>
+            </tbody>
+            <tfoot>
+                <tr>
+                    <th>Name</th>
+                    <th>Position</th>
+                    <th>Office</th>
+                    <th>Age</th>
+                    <th>Salary</th>
+                </tr>
+            </tfoot>
+        </table>
+    </div>
+
+    <script>
+        // Toggle Button Function
+        function tobarMenu() {
+            let tobar = document.querySelector('.tobar');
+            let navigation = document.querySelector('.navigation');
+            let main = document.querySelector('.main');
+            tobar.classList.toggle('active');
+            navigation.classList.toggle('active');
+            main.classList.toggle('active');
+        }
+
+        // Table Function
+        $(document).ready(function () {
+            $('table.display').DataTable();
+        });
+    </script>
+
 </body>
 
 </html>
