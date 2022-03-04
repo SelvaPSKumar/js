@@ -116,7 +116,7 @@
                                 <div class="me-auto p-2 bd-highlight">
                                 </div>
                                 <div class="p-2 bd-highlight">
-                                    <button type="button" class="btn btn-secondary" id="add" name="add"
+                                    <button type="button" class="btn btn-outline-primary" id="add" name="add"
                                         onclick="addRedirect()">Add</button>
                                 </div>
                             </div>
@@ -132,7 +132,7 @@
                                             <th>ACTIONS</th>
                                         </tr>
                                     </thead>
-                                    <tbody id="table-body">
+                                    <tbody id="tbody">
 
                                     </tbody>
                                 </table>
@@ -143,36 +143,23 @@
 
                 <div class="top-sales box">
                     <div class="title">Form</div>
-                    <div class="employee-form">
-                        <form onsubmit="event.preventDefault();onFormSubmit();" autocomplete="off">
-                            <div style="margin: 4px;">
-                                <div><label>Notes</label><label class="validation-error hide"
-                                        id="fullNameValidationError"></label></div>
-                                <input type="text" name="fullName" class="len" id="fullName">
-                            </div>
-                    </div>
-
-                    <div>
-                        <div><label>Date/Time</label></div>
-                        <input type="number" class="len" name="number" id="number">
-                    </div>
-                    <div>
+                    <form id="myForm" class="container1" method="post">
                         <div>
-                            <div><label>ID</label></div>
-                            <input type="number" class="len" pname="number" id="number">
+                            <strong>NOTES</strong><br><input type="text" name="notes" id="notes">
                         </div>
-                    </div>
-                    <div>
+                        <br>
                         <div>
-                            <div><label>Added By</label></div>
-                            <input type="text" class="len" name="email" id="email">
+                            <strong>Date/Time</strong><br><input type="text" name="datTym" id="datTym">
                         </div>
-                    </div><br>
-                    <div class="form-action-buttons">
-                        <input type="submit" class="btn btn-primary" value="Submit">
-                    </div>
+                        <br>
+                        <div>
+                            <strong>ID</strong><br><input type="email" name="idN" id="idN">
+                        </div>
+                        <br>
+                        <div>
+                            <input type="submit" name="submit" class='btn btn-primary btn-md ' id="subBtn" value="     Submit     ">
+                        </div>
                     </form>
-                </div>
             </div>
         </div>
         </div>

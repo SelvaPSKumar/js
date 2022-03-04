@@ -39,26 +39,24 @@ getData()
 
 document.getElementById("actionBtn").addEventListener("click", getData);
 
-// const tablebody = document.querySelector("#table-body");
+// const tablebody = document.querySelector("#tbody");
 // const url = "https://salixv3qa.radiusdirect.net/coreapi/clientAdminLogin";
 
-// var Name = document.getElementById("name");
-// var Gender = document.getElementById("gender");
-// var Email = document.getElementById("email");
-// var Status = document.getElementById("status");
+// var Notes = document.getElementById("notes");
+// var dateTym = document.getElementById("datTym");
+// var idNum = document.getElementById("idN");
 
 // var list = new Array;
 
-// const getTable = (users) => {
-//     if (users.length > 0) {
+// const getTable = (datas) => {
+//     if (datas.length > 0) {
 //         var temp = "";
-//         users.forEach(itemData => {
+//         datas.forEach(itemData => {
 //             temp += "<tr data-id=${itemData.id}>";
-//             temp += "<td>" + itemData.name + "</td>";
-//             temp += "<td>" + itemData.gender + "</td>";
-//             temp += "<td>" + itemData.email + "</td>";
-//             temp += "<td>" + itemData.status + "</td>";
-//             temp += "<td><button type='button' class='btn btn-outline-success btn-sm' data-action='edit'  data-id='" + itemData.id + "'>Edit</button><button type='button' class='btn btn-outline-danger btn-sm ms-1' data-action='delete' data-id='" + itemData.id + "'>Delete</button></td>";
+//             temp += "<td>" + itemData.notes + "</td>";
+//             temp += "<td>" + itemData.datTym + "</td>";
+//             temp += "<td>" + itemData.idN + "</td>";
+//             temp += "<td><button type='button' class='btn btn-success btn-sm' data-action='edit'  data-id='" + itemData.id + "'>Edit</button><button type='button' class='btn btn-danger btn-sm ms-1' data-action='delete' data-id='" + itemData.id + "'>Dlt</button></td>";
 
 //         });
 //         tablebody.innerHTML = temp;
@@ -67,7 +65,7 @@ document.getElementById("actionBtn").addEventListener("click", getData);
 // }
 
 
-// function renderTable() {
+// function showTable() {
 //     fetch(url, {
 //         method: "GET",
 //         headers: {
@@ -87,19 +85,19 @@ document.getElementById("actionBtn").addEventListener("click", getData);
 
 // window.addEventListener("load", (event) => {
 //     event.preventDefault();
-//     renderTable();
+//     showTable();
 // });
 
-// tablebody.addEventListener("click", function (evt) {
+// tablebody.addEventListener("click", function (evnt) {
 
 
-//     var elem = evt.target;
-//     var action = elem.dataset.action;
-//     var userId = elem.dataset.id;
+//     var con = evnt.target;
+//     var func = con.dataset.action;
+//     var idnN = con.dataset.id;
 //     if (action === "delete") {
-//         console.log("delete", userId);
+//         console.log("delete", IdnN);
 
-//         fetch(`${url}/${userId}`, {
+//         fetch(`${url}/${IdnN}`, {
 //             method: "DELETE",
 //             headers: {
 //                 "Content-Type": "application/json",
@@ -108,7 +106,7 @@ document.getElementById("actionBtn").addEventListener("click", getData);
 //         })
 //             .then((data) => {
 //                 console.log(data);
-//                 renderTable();
+//                 showTable();
 //             })
 //     }
 
@@ -116,12 +114,12 @@ document.getElementById("actionBtn").addEventListener("click", getData);
 //     var action = elem.dataset.action;
 //     var userId = elem.dataset.id;
 //     if (action === "edit") {
-//         console.log("edit", userId);
+//         console.log("edit", dataId);
 
-//         let obj = list.find(userslist => userslist.id == userId);
-//         console.log("list Array1", obj);
+//         let objec = list.find(dataslist => dataslist.id == dataId);
+//         console.log("list Array1", objec);
 
-//         window.location.href = "update.html?id=" + obj.id + "&" + "name=" + obj.name + "&" + "email=" + obj.email + "&" + "status=" + obj.status;
+//         window.location.href = "update.html?notes=" + objec.notes + "&" + "datTym=" + objec.datTym + "&" + idN=" + objec.idN";
 //         console.log("list Array", list)
 //     }
 // });
@@ -129,6 +127,46 @@ document.getElementById("actionBtn").addEventListener("click", getData);
 // function addRedirect() {
 //     window.location.href = "add.html";
 // }
+
+
+// Table Post
+
+window.addEventListener('load', (event) => {
+
+    const addBtn = document.querySelector("#subBtn");
+
+     var Notes = document.getElementById("notes");
+     var dateTym = document.getElementById("datTym");
+     var idNum = document.getElementById("idN");
+
+   
+ 	addBtn.addEventListener("click", (e) => {
+      console.log("notes", Notes.value)
+      console.log("datTym", dateTym.value)
+      console.log("idN", idNum.value)
+     
+      e.preventDefault();
+       
+       fetch( "https://salixv3qa.radiusdirect.net/coreapi/clientAdminLogin", {
+       	method:"POST",
+        headers:{
+        "Content-Type":"application/json",
+    	  "Authorization":""
+        },
+        body:JSON.stringify({
+          notes:Notes.value,
+          datTym:dateTym.value,
+          idN:idNum.value,
+         })
+       })
+       .then(response => response.json())
+       .then((data) => {
+        console.log(data);
+            
+       })
+      });
+
+});
 
 
 
