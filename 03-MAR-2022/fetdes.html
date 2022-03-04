@@ -157,39 +157,39 @@
                         </div>
                         <br>
                         <div>
-                            <input type="submit" name="submit" class='btn btn-primary btn-md ' id="subBtn" value="     Submit     ">
+                            <input type="button" name="submit" class='btn btn-primary btn-md ' id="subBtn"
+                                value="     Submit     ">
                         </div>
                     </form>
+                </div>
             </div>
-        </div>
         </div>
     </section>
 
     <!-- Modal -->
-    <div class="modal fade" id="Modal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel"
-        aria-hidden="true">
-        <div class="modal-dialog" role="document">
+
+    <div id="myModal" class="modal fade">
+        <div class="modal-dialog">
             <div class="modal-content">
-                <form id="authForm" name="certform
-                " method="POST">
-                    <div class="modal-header">
-                        <h5 class="modal-title" id="exampleModalLabel">Login</h5>
-                    </div>
-                    <div class="modal-body">
-                        <input type="text" name="Email" id="email" value="" class="form-control"
-                            placeholder="example@gmail.com" /><br><br>
-                        <input type="password" name="Password" id="password" value="" class="form-control"
-                            placeholder="Enter your password" /><br><br>
-                    </div>
-                    <div class="modal-footer">
-                        <button type="submit" class="btn btn-info" id="actionBtn" onclick="closeSelf()" value="submit">Submit</button>
-                    </div>
-                </form>
+                <div class="modal-header">
+                    <h5 class="modal-title"><strong>Log In</strong></h5>
+                    <button type="button" class="btn btn-outline-danger" data-dismiss="modal">&times;</button>
+                </div>
+                <div class="modal-body">
+                    <form>
+                        <div class="form-group">
+                            <input type="email" id="email" class="form-control" placeholder="example@gmail.com">
+                        </div><br>
+                        <div class="form-group">
+                            <input type="password" id="password" class="form-control" placeholder="Enter your password">
+                        </div><br>
+                        <button type="button" id="sub" class="btn btn-outline-primary">Submit</button>
+                    </form>
+                </div>
             </div>
         </div>
     </div>
-
-
+    <!-- Popup Modal -->
 
     <!-- Optional JavaScript -->
     <!-- jQuery first, then Popper.js, then Bootstrap JS -->

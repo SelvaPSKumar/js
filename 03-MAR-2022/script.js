@@ -1,50 +1,68 @@
 // Login Form
 
 $(document).ready(function () {
-  let urlParams = new URLSearchParams(window.location.search);
-  let myParam = urlParams.get('error');
-
-  if (myParam) {
-    $('.modal-footer p').html(myParam);
-    $('.modal-footer p').fadeIn(1000).fadeOut(2000);
-  } else function closeSelf(f) {
-    f.submit();
-    window.close();
-  }
-
-  $('#Modal').modal('show');
-
-
+  $("#myModal").modal('show');
+  $(".btn").click(function () {
+    $("#myModal").modal('hide');
+  });
 });
 
-let response = await fetch('https://salixv3qa.radiusdirect.net/coreapi/clientAdminLogin', {method:'POST', 
-headers: {'Authorization': 'Basic ' + btoa('login:password')}});
-let data = await response.json();
-console.log(data);
 
-// async function getData() {
-//   var data = await fetch("https://salixv3qa.radiusdirect.net/coreapi/v2/notesTasksCatList?category_type=notes")
-//   var data1 = await data.json()
-//   console.log(data1);
-//   var arr = [];
+// Sidebar
 
-//   var email = document.querySelector("#email")
-//   var emailValue = email.value = ""
-//   console.log(emailValue);
+let sidebar = document.querySelector(".sidebar");
+let sidebarBtn = document.querySelector(".sidebarBtn");
+sidebarBtn.onclick = function () {
+  sidebar.classList.toggle("active");
+  if (sidebar.classList.contains("active")) {
+    sidebarBtn.classList.replace("bx-menu", "bx-menu-alt-right");
+  } else
+    sidebarBtn.classList.replace("bx-menu-alt-right", "bx-menu");
+}
 
-//   var password = document.querySelector("#password")
-//   var passwordValue = password.value = ""
-//   arr.push(passwordValue)
-//   console.log(arr);
+// Show Password Func
 
-//   // var tbody = document.getElementById("tbody").setAttribute("scope","row");
-//   // tbody.innerHtml = 
+const passwordInput = document.getElementById('password');
+const togglePasswordButton = document.getElementById('toggle-password');
 
-// }
-// getData()
+togglePasswordButton.addEventListener('click', togglePassword);
+
+function togglePassword() {
+  if (passwordInput.type === 'password') {
+    passwordInput.type = 'text';
+    togglePasswordButton.textContent = 'Hide password';
+    togglePasswordButton.setAttribute('aria-label',
+      'Hide password.');
+  } else {
+    passwordInput.type = 'password';
+    togglePasswordButton.textContent = 'Show password';
+    togglePasswordButton.setAttribute('aria-label',
+      'Show password as plain text. ' +
+      'Warning: this will display your password on the screen.');
+  }
+}
 
 
-// document.getElementById("actionBtn").addEventListener("click", getData);
+async function getData() {
+  var data = await fetch(" https://salixv3qa.radiusdirect.net/coreapi/clientAdminLogin")
+  var data1 = await data.json()
+  console.log(data1);
+  var arr = [];
+
+  var email = document.querySelector("#email")
+  var emailValue = email.value = ""
+  console.log(emailValue);
+
+  var password = document.querySelector("#password")
+  var passwordValue = password.value = ""
+  arr.push(passwordValue)
+  console.log(arr);
+
+}
+getData()
+
+
+document.getElementById("sub").addEventListener("load", getData);
 
 
 // const tablebody = document.querySelector("#tbody");
@@ -155,7 +173,7 @@ console.log(data);
 
 //       e.preventDefault();
 
-//        fetch( "https://salixv3qa.radiusdirect.net/coreapi/clientAdminLogin", {
+//        fetch( "https://salixv3qa.radiusdirect.net/coreapi/v2/notesCreate", {
 //        	method:"POST",
 //         headers:{
 //         "Content-Type":"application/json",
@@ -175,17 +193,3 @@ console.log(data);
 //       });
 
 // });
-
-
-
-// Sidebar
-
-let sidebar = document.querySelector(".sidebar");
-let sidebarBtn = document.querySelector(".sidebarBtn");
-sidebarBtn.onclick = function () {
-  sidebar.classList.toggle("active");
-  if (sidebar.classList.contains("active")) {
-    sidebarBtn.classList.replace("bx-menu", "bx-menu-alt-right");
-  } else
-    sidebarBtn.classList.replace("bx-menu-alt-right", "bx-menu");
-}
