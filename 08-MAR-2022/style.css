@@ -11,7 +11,7 @@
   position: fixed;
   height: 100%;
   width: 240px;
-  background: #0A2558;
+  background: #f2796e;
   transition: all 0.5s ease;
   padding-left: 0;
 }
@@ -53,10 +53,10 @@
   transition: all 0.4s ease;
 }
 .sidebar .nav-links li a.active{
-  background: #081D45;
+  background: #f2796e;
 }
 .sidebar .nav-links li a:hover{
-  background: #081D45;
+  background: #000;
 }
 .sidebar .nav-links li i{
   min-width: 60px;
@@ -65,7 +65,6 @@
   color: #fff;
 }
 
-/* Basic YWRtaW5AdjNxYXJkOnJhZGl1czEyMw== */
 .sidebar .nav-links li a .links_name{
   color: #fff;
   font-size: 15px;
@@ -80,11 +79,18 @@
 
 .home-section{
   position: relative;
-  background: #f5f5f5;
+  background: #fff;
   min-height: 100vh;
   width: calc(100% - 240px);
   left: 240px;
   transition: all 0.5s ease;
+  background-image: url("https://svgshare.com/i/_gZ.svg' title='illustration");
+  background-repeat: no-repeat;
+  background-size: contain;
+  background-position: center;
+  /* border: 1px solid black; */
+  height: 65%;
+  
 }
 .sidebar.active ~ .home-section{
   width: calc(100% - 60px);
@@ -95,6 +101,7 @@
   justify-content: space-between;
   height: 80px;
   background: #fff;
+  box-shadow: #000;
   display: flex;
   align-items: center;
   position: fixed;
@@ -105,6 +112,7 @@
   box-shadow: 0 1px 1px rgba(0, 0, 0, 0.1);
   transition: all 0.5s ease;
 }
+
 .sidebar.active ~ .home-section nav{
   left: 60px;
   width: calc(100% - 60px);
@@ -112,6 +120,7 @@
 .home-section nav .sidebar-button{
   display: flex;
   align-items: center;
+  color: #f2796e;
   font-size: 24px;
   font-weight: 500;
 }
@@ -131,16 +140,17 @@ nav .search-box input{
   width: 100%;
   outline: none;
   background: #F5F6FA;
-  border: 2px solid #EFEEF1;
+  border: 2px solid #f2796e;
   border-radius: 6px;
   font-size: 18px;
+  font-weight: bold;
   padding: 0 15px;
 }
 nav .search-box .bx-search{
   position: absolute;
   height: 40px;
   width: 40px;
-  background: #2697FF;
+  background: #f2796e;
   right: 5px;
   top: 50%;
   transform: translateY(-50%);
@@ -155,17 +165,11 @@ nav .search-box .bx-search{
   display: flex;
   align-items: center;
   background: #F5F6FA;
-  border: 2px solid #EFEEF1;
+  border: 2px solid #f2796e;
   border-radius: 6px;
   height: 50px;
   min-width: 190px;
   padding: 0 15px 0 2px;
-}
-nav .profile-details img{
-  height: 40px;
-  width: 40px;
-  border-radius: 6px;
-  object-fit: cover;
 }
 nav .profile-details .admin_name{
   font-size: 15px;
@@ -262,13 +266,14 @@ nav .profile-details i{
 .home-content .sales-boxes{
   display: flex;
   justify-content: space-between;
+  color: #fff;
   /* padding: 0 20px; */
 }
 
 /* left box */
 .home-content .sales-boxes .recent-sales{
   width: 65%;
-  background: #fff;
+  background: #f2796e;
   padding: 20px 30px;
   margin: 0 20px;
   border-radius: 12px;
@@ -320,7 +325,7 @@ nav .profile-details i{
 /* Right box */
 .home-content .sales-boxes .top-sales{
   width: 35%;
-  background: #fff;
+  background: #f2796e;
   padding: 20px 30px;
   margin: 0 20px 0 0;
   border-radius: 12px;
@@ -334,14 +339,6 @@ nav .profile-details i{
   font-size: 24px;
   font-weight: 500;
 }
-/* .sales-boxes .top-sales li a {
-  height: 40px;
-  width: 40px;
-  object-fit: cover;
-  border-radius: 12px;
-  margin-right: 10px;
-  background: #333;
-} */
 .sales-boxes .top-sales li a{
   display: flex;
   align-items: center;
@@ -452,8 +449,6 @@ label {
   cursor: pointer;
 }
 
-/* .pagination {
-  width: 200px;
-  margin-left: 337px;
-  margin-top: 60%;
-} */
+th {
+  color: #fff;
+}

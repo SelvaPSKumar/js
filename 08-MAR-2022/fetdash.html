@@ -4,7 +4,7 @@
 
 <head>
     <meta charset="UTF-8">
-    <!--<title> Responsiive Admin Dashboard | CodingLab </title>-->
+    <!--<title>Admin Dashboard</title>-->
     <link rel="stylesheet" href="style.css">
     <!-- Boxicons CDN Link -->
     <link href='https://unpkg.com/boxicons@2.0.7/css/boxicons.min.css' rel='stylesheet'>
@@ -12,13 +12,10 @@
     <!-- Bootstrap -->
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/css/bootstrap.min.css" rel="stylesheet">
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/js/bootstrap.bundle.min.js"></script>
-    <!-- Bootstrap CSS -->
-    <!-- <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css"
-        integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous"> -->
-
 </head>
 
 <body>
+    <!-- Side Bar -->
 
     <div class="sidebar">
         <div class="logo-details">
@@ -88,6 +85,9 @@
             </li>
         </ul>
     </div>
+    <!-- Side Bar End -->
+
+    <!-- Nav Bar -->
 
     <section class="home-section">
         <nav class="navi">
@@ -101,11 +101,13 @@
                 <i class='bx bx-search'></i>
             </div>
             <div class="profile-details">
-                <!--<img src="images/profile.jpg" alt="">-->
                 <span class="admin_name">Selva SureshKumar</span>
                 <i class='bx bx-chevron-down'></i>
             </div>
         </nav>
+        <!-- Nav Bar End -->
+
+        <!-- Data Table -->
 
         <div class="home-content">
             <div class="sales-boxes">
@@ -116,7 +118,6 @@
                             <div class="d-flex bd-highlight mb-3">
                                 <div class="me-auto p-2 bd-highlight"></div>
                             </div>
-
                             <div class="table-responsive">
                                 <table class="table">
                                     <thead>
@@ -136,16 +137,18 @@
                         </div>
                     </div>
                 </div>
+                <!-- Data Table End -->
+
+                <!-- Form Modal -->
 
                 <div class="top-sales box">
                     <div class="title">Form</div>
                     <!-- Button trigger modal -->
-                    <button type="button" class="btn btn-outline-primary" data-bs-toggle="modal"
+                    <button type="button" class="btn btn-outline-light" data-bs-toggle="modal"
                         data-bs-target="#exampleModal">
                         Add
                     </button>
 
-                    <!-- Modal -->
                     <div class="modal fade" id="exampleModal" tabindex="-1" aria-labelledby="exampleModalLabel"
                         aria-hidden="true">
                         <div class="modal-dialog">
@@ -168,7 +171,7 @@
                                         </div>
                                         <br>
                                         <div>
-                                            <strong>ID</strong><br><input type="email"
+                                            <strong>ID</strong><br><input type="text"
                                                 class="form-control border-secondary" name="idN" id="idN">
                                         </div>
                                     </form>
@@ -176,7 +179,8 @@
                                 <div class="modal-footer">
                                     <button type="button" class="btn btn-secondary"
                                         data-bs-dismiss="modal">Close</button>
-                                    <button type="submit" value="submit" id="subBtn" class="btn btn-primary">Submit</button>
+                                    <button type="submit" value="submit" id="subBtn" class="btn btn-primary"
+                                        data-bs-dismiss="modal">Submit</button>
                                 </div>
                             </div>
                         </div>
@@ -185,9 +189,9 @@
             </div>
         </div>
     </section>
+    <!-- Form Modal End -->
 
-
-    <!-- Modal -->
+    <!-- Login Popup Modal -->
 
     <div id="myModal" class="modal fade">
         <div class="modal-dialog">
@@ -215,7 +219,7 @@
             </div>
         </div>
     </div>
-    <!-- Popup Modal -->
+    <!--Login Popup Modal End -->
 
     <!-- Optional JavaScript -->
     <!-- jQuery first, then Popper.js, then Bootstrap JS -->
