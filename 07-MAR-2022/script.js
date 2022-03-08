@@ -10,6 +10,7 @@ $(document).ready(function () {
 
 // Login Auth
 
+
 function fetchAuth() {
   // (A) URL & CREDENTIALS
   var url = "https://salixv3qa.radiusdirect.net/coreapi/clientAdminLogin",
