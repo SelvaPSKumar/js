@@ -50,7 +50,7 @@ let engine = (id, serial, message) => {
 function fetchAuth() {
     // (A) URL & CREDENTIALS
     const ApiUrl = "https://salixv3qa.radiusdirect.net/coreapi/clientAdminLogin",
-        credentials = btoa("email:password");
+        credentials = btoa("email:admin@v3qard.com,password:radius123");
 
     // (B) FETCH WITH HTTP AUTH
     fetch(ApiUrl, {
