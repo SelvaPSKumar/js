@@ -30,7 +30,7 @@
         template += "<td>" + itemData.category_type + "</td>";
         template += "<td>" + itemData.createdAt + "</td>";
         template += "<td>" + itemData.id + "</td>";
-        template += "<td><button type='button' class='btn btn-primary btn-sm' data-funAct='edit'  data-id='" + itemData.id + "'>Edit</button><button type='button' class='btn btn-danger btn-sm ms-1' data-funAct='delete' data-id='" + itemData.id + "'>Delete</button></td>";
+        template += "<td><button type='button' class='btn btn-primary btn-sm' id='editBtn' onclick='onEdit()' data-funAct='edit'  data-id='" + itemData.id + "'>Edit</button><button type='button' class='btn btn-danger btn-sm ms-1' data-funAct='delete' data-id='" + itemData.id + "'>Delete</button></td>";
 
       });
       tableBody.innerHTML = template;
@@ -181,6 +181,47 @@
   })();
 
  // Serch Box Function End
+
+//  Edit Function
+
+window.addEventListener('load', (func) => {
+
+  const editBtn = document.querySelector("#editBtn");
+
+   var editNotes = document.getElementById("category_type");
+   var editTimeDate = document.getElementById("createdAt");
+   var editIdNumber = document.getElementById("id");
+
+   func.preventDefault();
+ 
+ editBtn.addEventListener("click", (funct) => {
+    document.getElementById("category_type", editNotes.value)
+    document.getElementById("createdAt", editTimeDate.value)
+    document.getElementById("id", editIdNumber.value)
+   
+    funct.preventDefault();
+
+    fetch( "https://salixv3qa.radiusdirect.net/coreapi/v2/notesUpdate", {
+       	method:"POST",
+        headers:{
+        "Content-Type":"application/json",
+    	  "Authorization":localStorage.getItem('token',response.token)
+        },
+        body:JSON.stringify({
+          category_type:editNotes.value,
+          createdAt:editTimeDate.value,
+          id:editIdNumber.value,
+         })
+       })
+       .then(response => response.json())
+       .then((data) => {
+        console.log(data);
+            
+       })
+      });
+});
+
+//  Edit Function End
 
 //  Pagination 
 
