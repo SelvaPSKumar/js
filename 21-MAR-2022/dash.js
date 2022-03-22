@@ -30,7 +30,7 @@
           template += "<td>" + itemData.category_type + "</td>";
           template += "<td>" + itemData.createdAt + "</td>";
           template += "<td>" + itemData.id + "</td>";
-          template += "<td><button type='button' data-bs-toggle='modal' data-bs-target='#myModal' class='btn btn-primary btn-sm' id='editBtn' data-action='edit' data-category-type='' data-createdAt='' data-id='' + itemData.id + "'>Edit</button><button type='button' class='btn btn-danger btn-sm ms-1' data-action='delete' data-id='" + itemData.id + "'>Delete</button></td>";
+          template += "<td><button type='button' data-bs-toggle='modal' data-bs-target='#myModal' class='btn btn-primary btn-sm' id='editBtn' data-action='edit' data-category-type='' data-createdAt='' data-id='' + itemData.id + ''>Edit</button>;<button type='button' class='btn btn-danger btn-sm ms-1' data-action='delete' data-id='" + itemData.id + "'>Delete</button></td>";
   
         });
         tableBody.innerHTML = template;
@@ -137,51 +137,20 @@
             showTable();
           })
       }
-
-      
-  const apiUrl1 = "https://salixv3qa.radiusdirect.net/coreapi/v2/notesUpdate"
-
-  tableBody.addEventListener("click", function (evnt1) {
     
+      var element = evnt.target;
+      var action = element.dataset.action;
+      var datId = element.dataset.id;
+      if (action === "edit") {
+        console.log("edit", datId);
     
-    var element = evnt1.target;
-    var action = element.dataset.action;
-    var datId = element.dataset.id;
-
-    if (action === "delete") {
-      var rowDataId = {
-        "id" : datId,
-        "category-type" : {categoryType},
-    }
-      console.log("delete", datId);
-  
-      fetch(`${apiUrl}`, {
-        method: "POST",
-        headers: {
-          "Content-Type": "application/json",
-          "Authorization": "Bearer"+" "+localStorage.getItem('token')
-        },
-        body:JSON.stringify(rowDataId)
-      })
-        .then((data) => {
-          console.log(data);
-          showTable();
-        })
-    }
+        let obj = list.find(userslist => userslist.id == datId);
+        console.log("list Array1", obj);
     
-    //   var element = evnt.target;
-    //   var action = element.dataset.action;
-    //   var datId = element.dataset.id;
-    //   if (action === "edit") {
-    //     console.log("edit", datId);
-    
-    //     let obj = list.find(userslist => userslist.id == datId);
-    //     console.log("list Array1", obj);
-    
-    //     "category_type=" + obj.Notes + "&" + "createdAt=" + obj.dataTym + "&" + "id=" + obj.idNum;
-    //     console.log("list Array", list)
-    //   }
-    // });
+        "category_type=" + obj.Notes + "&" + "createdAt=" + obj.dataTym + "&" + "id=" + obj.idNum;
+        console.log("list Array", list)
+      }
+    });
     
     // Edit Modal
     
